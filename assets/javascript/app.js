@@ -52,29 +52,15 @@ $(document).ready(function () {
     
     var nextTrainTime = moment().add(minsUntilTrain, "minutes");
     console.log("Next arrival: " + moment(nextTrainTime).format("LT"));
-    
-    // 		nameInput: "Please enter a valid train name!",
-    // 		destInput: "Please enter a valid destination!",
-    // 		timeInput: "Please enter a valid time, HH:mm.",
-    // 		freqInput: "Please enter a valid number."
-    // }
-    // });
-    //update information in table 
+  
     $('#currentTime').text(currentTime);
     $('#trainTable').append("<tr><td id='nameDisplay'>" + childSnapshot.val().name + "</td><td id='destDisplay'>" + childSnapshot.val().dest + "</td><td id='freqDisplay'>" + childSnapshot.val().freq + "</td><td id='nextDisplay'>" + moment(nextTrainTime).format("LT") + "</td><td id='awayDisplay'>" + minsUntilTrain + ' minutes until arrival' + "</td></tr>");
   }, function (errorObject) {
     console.log("Read failed: " + errorObject.code)
   });
-  // database.ref().orderByChild("timeAdded").limitToLast(1).on("child_added", function(snapshot){
-  //     // update html with children
-  //     $("#nameDisplay").html(snapshot.val().name);
-  //     $("#destDisplay").html(snapshot.val().dest);
-  //     $("#timeDisplay").html(moment(nextTrain).format("HH:mm"));
-  //     $("#freqDisplay").html(snapshot.val().freq);
-  // })
-  //remove train button click function
+
   $('#removeTrain').on('click', trainTable, function () {
-    //$("#trainTable").closest('tr').remove ();
+
     var table = document.getElementById("trainTable");
     table.deleteRow(table.rows.length - 1);
   });
