@@ -1,94 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Train Scheduler</title>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="assets/css/style.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Train Scheduler</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
   <link rel="shortcut icon" href="favicon.ico">
-	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 </head>
-<body> 
-	<!-- Jumbotron/Title -->
-<div class="container">
-	<div class="jumbotron text-center" style="background-color: none; color: none">
-		<h1>All Aboard!!!</h1>
-		<hr>
-		<h2>Current Time: <span id="currentTime"></span></h2>
-	</div> 
-	
-	<div class="row" id="trainBox">
-		<div class="col-md-9">
-			<div class="panel">
-				<div class="panel-heading">
-					<h3 class="panel-title">Current Train Schedule</h3>
-				</div>
-	 			<div class="panel-body">
-					<table class="table table-hover table-responsive" id="trainTable" style="background-color: none !important; color: none">
-					<thead>
-						<tr>
-							<th>Train Name</th>
-							<th>Destination</th>
-							<th>Frequency (min)</th>
-							<th>Next Arrival</th>
-							<th>Minutes Away</th>
-						</tr>
-					</thead>
-					<tbody id="trainTableBody">
-						<tr></tr>
-					</tbody>
-					</table>
-	 			</div> <!-- Panel Body End -->
-			</div> <!-- Panel Default End -->
-		</div> <!-- Col End -->
 
-		<div class="col-md-3" id="addTrain">
-			<div class="panel">
-				<div class="panel-heading">
-					<h3 class="panel-title">Add Train</h3>
-				</div>
-	 			<div class="panel-body">
-	 				<form>
-			 			<div class="input-box">
-						    <label for="name">Train Name </label>
-						    <input type="text" class="form-control" id="nameInput" placeholder="Train Name">
-						</div>
-						<div class="input-box">
-						    <label for="dest">Destination </label>
-						    <input type="text" class="form-control" id="destInput" placeholder="Destination">
-						</div>
-						<div class="input-box">
-							<label class="nextTrain" for="nextTrain">First Train Time</label>
-						    <input type="HH:mm" class="form-control" id="timeInput" placeholder="00:00 AM/PM">
-						</div>
-						<div class="input-box">
-						    <label for="minsAway">Frequency (mins) </label>
-						    <input type="text" class="form-control" id="freqInput" placeholder="10">
-						</div>
+<body>
+  <div class="container">
+    <div class="jumbotron text-center" style="background-color: none; color: none">
+      <h1>All Aboard!!!</h1>
+      <hr>
+      <h2>Current Time: <span id="currentTime"></span></h2>
+    </div>
 
+    <div class="row" id="trainBox">
+      <div class="col-md-9">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Current Train Schedule</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover table-responsive" id="trainTable" style="background-color: none !important; color: none">
+              <thead>
+                <tr>
+                  <th>Train Name</th>
+                  <th>Destination</th>
+                  <th>Frequency (min)</th>
+                  <th>Next Arrival</th>
+                  <th>Minutes Away</th>
+                </tr>
+              </thead>
+              <tbody id="trainTableBody">
+                <tr></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-					</form>
-					<button class="btn btn-default" id="submit">Add Train</button>
+      <div class="col-md-3" id="addTrain">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add Train</h3>
+          </div>
+          <div class="panel-body">
+            <form>
+              <div class="input-box">
+                <label for="name">Train Name </label>
+                <input type="text" class="form-control" id="nameInput" placeholder="Train Name">
+              </div>
+              <div class="input-box">
+                <label for="dest">Destination </label>
+                <input type="text" class="form-control" id="destInput" placeholder="Destination">
+              </div>
+              <div class="input-box">
+                <label class="nextTrain" for="nextTrain">First Train Time</label>
+                <input type="HH:mm" class="form-control" id="timeInput" placeholder="00:00 AM/PM">
+              </div>
+              <div class="input-box">
+                <label for="minsAway">Frequency (mins) </label>
+                <input type="text" class="form-control" id="freqInput" placeholder="10">
+              </div>
+            </form>
+            <button class="btn btn-default" id="submit">Add Train</button>
+            <button class="btn btn-default" id="removeTrain">Remove</button>
+          </div> 
+        </div>
+      </div>
+    </div> 
 
-					<button class="btn btn-default" id="removeTrain">Remove</button>
-		 		</div> <!-- Panel Body End -->
-			</div> <!-- Panel Default End -->
-		</div> <!-- Col End -->
-	</div> <!-- Row End -->
-	
-</div>	<!-- Container End -->
-	<!--Bootstrap Css-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!--Bootstrap JS-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!--Javascript Link-->
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
+  </div> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>

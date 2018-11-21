@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
   var config = {
     apiKey: "AIzaSyAAcIwoDtVGt4EIHefDNrVZuK9V8NYKWgo",
     authDomain: "train-3e542.firebaseapp.com",
@@ -11,16 +10,16 @@ $(document).ready(function () {
   };
 
   firebase.initializeApp(config);
-  
+
   var database = firebase.database();
-  
+
   $("#submit").on("click", function () {
-  
+
     var name = $('#nameInput').val().trim();
     var dest = $('#destInput').val().trim();
     var time = $('#timeInput').val().trim();
     var freq = $('#freqInput').val().trim();
-  
+
     database.ref().push({
       name: name,
       dest: dest,
@@ -28,7 +27,7 @@ $(document).ready(function () {
       freq: freq,
       timeAdded: firebase.database.ServerValue.TIMESTAMP
     });
-  
+
     $("input").val('');
     return false;
   });
@@ -49,10 +48,10 @@ $(document).ready(function () {
     console.log("Remainder: ", remainder);
     var minsUntilTrain = newFreq - remainder;
     console.log("Time Til Train: " + minsUntilTrain);
-    
+
     var nextTrainTime = moment().add(minsUntilTrain, "minutes");
     console.log("Next arrival: " + moment(nextTrainTime).format("LT"));
-  
+
     $('#currentTime').text(currentTime);
     $('#trainTable').append("<tr><td id='nameDisplay'>" + childSnapshot.val().name + "</td><td id='destDisplay'>" + childSnapshot.val().dest + "</td><td id='freqDisplay'>" + childSnapshot.val().freq + "</td><td id='nextDisplay'>" + moment(nextTrainTime).format("LT") + "</td><td id='awayDisplay'>" + minsUntilTrain + ' minutes until arrival' + "</td></tr>");
   }, function (errorObject) {
