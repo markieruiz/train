@@ -39,19 +39,12 @@ $(document).ready(function () {
     var newFreq = childSnapshot.val().freq;
 
     var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-
-    console.log(moment(currentTime).format("LT"));
     var firstTimeConverted = moment(newTime, "LT").subtract(1, "days");
     timeDiff = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("Difference in time: " + timeDiff);
     var remainder = timeDiff % newFreq;
-    console.log("Remainder: ", remainder);
     var minsUntilTrain = newFreq - remainder;
-    console.log("Time Til Train: " + minsUntilTrain);
-
     var nextTrainTime = moment().add(minsUntilTrain, "minutes");
-    console.log("Next arrival: " + moment(nextTrainTime).format("LT"));
-
+  
     $('#currentTime').text(currentTime);
     $('#trainTable').append("<tr><td id='nameDisplay'>" + childSnapshot.val().name + "</td><td id='destDisplay'>" + childSnapshot.val().dest + "</td><td id='freqDisplay'>" + childSnapshot.val().freq + "</td><td id='nextDisplay'>" + moment(nextTrainTime).format("LT") + "</td><td id='awayDisplay'>" + minsUntilTrain + ' minutes until arrival' + "</td></tr>");
   }, function (errorObject) {
