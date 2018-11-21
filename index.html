@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Train Scheduler</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- jQuery CDN -->
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="assets/css/reset.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<!-- Firebase Reference -->
+	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+	<!-- Moment.js Reference -->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+	<!--Jquery Validation -->
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+</head>
+<body> 
+	<!-- Jumbotron/Title -->
+<div class="container">
+	<div class="jumbotron text-center" style="background-color: none; color: none">
+		<h1>All Aboard!!!</h1>
+		<hr>
+		<h2>Current Time: <span id="currentTime"></span></h2>
+	</div> 
+	
+	<div class="row" id="trainBox">
+		<div class="col-md-9">
+			<div class="panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Current Train Schedule</h3>
+				</div>
+	 			<div class="panel-body">
+					<table class="table table-hover table-responsive" id="trainTable" style="background-color: none !important; color: none">
+					<thead>
+						<tr>
+							<th>Train Name</th>
+							<th>Destination</th>
+							<th>Frequency (min)</th>
+							<th>Next Arrival</th>
+							<th>Minutes Away</th>
+						</tr>
+					</thead>
+					<tbody id="trainTableBody">
+						<tr></tr>
+					</tbody>
+					</table>
+	 			</div> <!-- Panel Body End -->
+			</div> <!-- Panel Default End -->
+		</div> <!-- Col End -->
+
+		<div class="col-md-3" id="addTrain">
+			<div class="panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add Train</h3>
+				</div>
+	 			<div class="panel-body">
+	 				<form>
+			 			<div class="input-box">
+						    <label for="name">Train Name </label>
+						    <input type="text" class="form-control" id="nameInput" placeholder="Train Name">
+						</div>
+						<div class="input-box">
+						    <label for="dest">Destination </label>
+						    <input type="text" class="form-control" id="destInput" placeholder="Destination">
+						</div>
+						<div class="input-box">
+							<label class="nextTrain" for="nextTrain">First Train Time</label>
+						    <input type="HH:mm" class="form-control" id="timeInput" placeholder="00:00 AM/PM">
+						</div>
+						<div class="input-box">
+						    <label for="minsAway">Frequency (mins) </label>
+						    <input type="text" class="form-control" id="freqInput" placeholder="10">
+						</div>
+
+
+					</form>
+					<button class="btn btn-default" id="submit">Add Train</button>
+
+					<button class="btn btn-default" id="removeTrain">Remove</button>
+		 		</div> <!-- Panel Body End -->
+			</div> <!-- Panel Default End -->
+		</div> <!-- Col End -->
+	</div> <!-- Row End -->
+	
+</div>	<!-- Container End -->
+	<!--Bootstrap Css-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!--Bootstrap JS-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--Javascript Link-->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+</html>
